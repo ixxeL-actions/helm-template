@@ -1,0 +1,25 @@
+---
+name: Helm-template-CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container: 
+      image: ixxel/unit-tests-alpine:latest
+    steps:
+    - name: Git clone repo
+      uses: actions/checkout@v2
+    - name: Helm chart templating
+      uses: ixxeL-actions/helm-template@main
+      with:
+        chart-name: 'mongodb'
+        output-file: 'result.yaml'
+        display: 'true'
+        values-file: 'values.yaml'
+        working-dir: './chart/mongodb'
