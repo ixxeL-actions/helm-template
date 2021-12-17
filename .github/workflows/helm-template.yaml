@@ -10,7 +10,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    container: 
+    container:
       image: ixxel/unit-tests-alpine:latest
     steps:
     - name: Git clone repo
